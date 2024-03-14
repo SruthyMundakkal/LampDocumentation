@@ -1,0 +1,92 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0; /* High contrast with text */
+}
+
+
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline;
+}
+
+nav ul li a {
+  display: block;
+  color: black;
+  text-decoration: none;
+  padding: 10px 20px;
+}
+
+nav ul li a:hover {
+  background-color: #555; /* Repetition of color scheme */
+}
+
+.content {
+  display: flex;
+}
+
+#project_home .left-div {
+  flex: 1.5;
+  /* Add styling for the left div */
+}
+
+#project_home .right-div {
+  flex: 1;
+  padding-top: 70px;
+  /* Add styling for the right div */
+}
+
+#teminal_mode {
+  color:brown;
+  padding: 20px;
+}
+
+section {
+  padding: 70px;
+  margin: 20px 0; /* Increased proximity between sections */
+  border: 1px solid #ddd;
+  background-color: white; /* High contrast with text */
+}
+
+h2 {
+  color: #333; /* High contrast with background */
+  margin-top: 0; /* Alignment */
+}
+
+#home_id {
+ 
+  color: white;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  padding-top: 60px;
+  background-image: url('/images/apache-web-server-logo.png'); /* Replace 'path/to/your/image.jpg' with the path to your image */
+  background-size: cover; /* Ensure the image covers the entire section */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  filter: blur(10px); /* Apply blur effect */
+}
+
+.content {
+  position: relative;
+  z-index: 1; /* Ensure the content appears above the background image */
+}
+
+#project_home {
+  padding-top: 100px;
+}

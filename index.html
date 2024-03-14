@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ubuntu LAMP Documentation</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <nav id="home_id">
+      <ul>
+        <li><a href="#project_home"><i class="fas fa-bars"></i></a></li>
+      </ul>
+    </nav>
+    <section id="project_home">
+      <div class="background-image"></div>
+      <div class="content">
+        <div class="left-div">
+          <h1>PROJECT 1</h1>
+          <h2>Web Server Fundamental<br>OSYS2040 (W0488095)</h2>
+          <p>
+            This website will provide documentation on how to install and configure the following on Ubuntu. For each section, included some brief descriptions/explanations of the commands being run. <br><br>
+            How to install Apache, How to install PHP v8.2, How to install MySQL, How to add a new user to MySQL, 
+            How to add a new database to MySQL and give a user permission to that database, How to configure a vhost in Apache, How to test that your LAMP stack is working.<br><br>
+            Check the links <i class="fas fa-arrow-right"></i>
+          </p>
+        </div>
+        <div class="right-div">
+          <nav>
+            <ul>
+              <li></li>
+              <li><a href="#install-apache">Install Apache</a></li>
+              <li><a href="#install-php">Install PHP v8.2</a></li>
+              <li><a href="#install-mysql">Install MySQL</a></li>
+              <li><a href="#add-user-mysql">Add a new user to MySQL</a></li>
+              <li><a href="#add-database-mysql">Add a new database to MySQL</a></li>
+              <li><a href="#configure-vhost">Configure a vhost in Apache</a></li>
+              <li><a href="#test-lamp">Test LAMP stack</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      
+    </section>
+    
+      
+
+  <section id="install-apache">
+    <h2>How to install Apache</h2>
+    <p>
+        To install Apache on Ubuntu, you can use the package manager 'apt'.
+        <ol>
+            <li><b>Update package index:</b> First, update the package index to ensure you install the latest version of Apache.</li>
+            <div id="teminal_mode">
+              sudo apt update
+            </div>
+
+            <li><b>Install Apache</b>Use apt to install the Apache package (apache2).</li>
+            <div id="teminal_mode">
+              sudo apt install apache2
+            </div>
+
+            <li><b>Verify installation:</b>After the installation is complete, you can verify that Apache has been installed correctly by checking its status.</li>
+            <div id="teminal_mode">
+              sudo systemctl status apache2
+            </div>
+
+            This command will display the status of the Apache service. If Apache has been installed successfully, you should see output indicating that the service is active and running.<br><br>
+            <li><b>Access Apache default page: </b>Open a web browser and enter http://localhost in the address bar. You should see the Apache default page, indicating that Apache has been installed and is running correctly.</li>
+
+        </ol>
+    </p>
+  </section>
+
+  <section id="install-php">
+    <h2>How to install PHP v8.2</h2>
+    <p>
+        To install PHP on Ubuntu, you can use the apt package manager. Here's how you can do it:
+        <ol>
+            <li><b>Add PHP repository (if needed):</b> Depending on the PHP version you want, you might need to add a repository that contains the desired version. For PHP 8.2, you may need to add a third-party repository. You can check the official PHP website or trusted sources for instructions on adding the repository.</li>
+            <br><br>
+
+            <li><b>Update package index:</b>Once you've added the repository or if you're sticking to the default PHP version available in Ubuntu, you should update the package index.</li>
+            <div id="teminal_mode">
+              sudo apt update
+            </div>
+
+            <li><b>VInstall PHP: </b>Use apt to install PHP along with necessary extensions. Here's a general command to install PHP along with some commonly used extensions:</li>
+            <div id="teminal_mode">
+              sudo apt install php php-cli php-mysql
+            </div>
+
+            <li><b>Verify installation: </b>After the installation is complete, you can verify that PHP has been installed correctly by checking its version.</li>
+            <div id="teminal_mode">
+              php -v
+            </div>
+        </ol>
+    </p>
+  </section>
+
+  <section id="install-mysql">
+    <h2>How to install MySQL</h2>
+    <p>
+        To install MySQL on Ubuntu, you can follow these steps:
+        <ol>
+            <li><b>Update package index: </b> First, update the package index to ensure you install the latest version of MySQL.</li>
+            <div id="teminal_mode">
+              sudo apt update
+            </div>
+
+            <li><b>Install MySQL Server:</b>Use apt to install the MySQL Server package (mysql-server).</li>
+            <div id="teminal_mode">
+              sudo apt install mysql-server
+            </div>
+
+            <li><b>Run MySQL security script (optional but recommended): </b>After installing MySQL, it's recommended to run a security script that comes with MySQL to improve the security of your MySQL installation.</li>
+            <div id="teminal_mode">
+              sudo mysql_secure_installation
+            </div>
+
+            This script will prompt you to set up the root password, remove anonymous users, disallow root login remotely, remove test databases, and reload privilege tables. Follow the prompts to secure your MySQL installation according to your preferences.<br><br>
+
+            <li><b>Verify MySQL installation: </b>After completing the installation and setup, you can verify that MySQL has been installed correctly by checking its status.</li>
+            <div id="teminal_mode">
+              sudo systemctl status mysql
+            </div>
+
+            <li><b>Access MySQL: </b>You can access the MySQL command-line interface by typing:</li>
+            <div id="teminal_mode">
+              mysql -u root -p
+            </div>
+
+            Enter the root password you set during the security script setup. If everything is configured correctly, you should now be able to access the MySQL shell.<br><br>
+        </ol>
+    </p>
+  </section>
+
+  <section id="add-user-mysql">
+    <h2>How to add a new user to MySQL</h2>
+    <p>
+        To add a new user to MySQL, you can follow these steps:
+        <ol>
+            <li><b>Access MySQL: </b>First, access the MySQL command-line interface as the root user:</li>
+            <div id="teminal_mode">
+              mysql -u root -p
+            </div>
+            Enter the root password when prompted.<br><br>
+
+            <li><b>Create a new MySQL user: </b>Once you're logged in to MySQL, you can create a new user using the CREATE USER command. Replace newusername and password with the desired username and password for the new user:</li>
+            <div id="teminal_mode">
+              CREATE USER 'newusername'@'localhost' IDENTIFIED BY 'password';
+            </div>
+            
+            This command creates a new user with the specified username and password. The @'localhost' part indicates that the user can only connect to MySQL from the localhost.<br><br>
+
+            <li><b>Grant privileges to the new user: </b>After creating the user, you need to grant appropriate privileges to the user. You can grant specific privileges or grant all privileges to the user. Replace database_name with the name of the database to which you want to grant access, or use *.* to grant access to all databases:</li>
+            <div id="teminal_mode">
+              GRANT ALL PRIVILEGES ON database_name.* TO 'newusername'@'localhost';
+            </div>
+          
+            This command grants all privileges on the specified database to the new user. If you want to grant privileges on all databases, you can use *.* instead of database_name.*.<br><br>
+
+            <li><b>Apply changes: </b>After granting privileges, you need to apply the changes for them to take effect:</li>
+            <div id="teminal_mode">
+              FLUSH PRIVILEGES;
+            </div>
+
+            This command reloads the grant tables in MySQL, ensuring that the privileges you've granted are applied immediately.<br><br>
+            
+            <li><b>Exit MySQL: </b>Once you've added the new user and granted privileges, you can exit the MySQL command-line interface:</li>
+            <div id="teminal_mode">
+              exit;
+            </div>
+
+            That's it! You've successfully added a new user to MySQL and granted privileges to access databases. The new user can now connect to MySQL using the specified username and password and perform operations based on the granted privileges.<br><br>
+        </ol>
+    </p>
+  </section>
+
+  <section id="add-database-mysql">
+    <h2>How to add a new database to MySQL</h2>
+    <p>
+        To add a new database to MySQL, you can follow these steps:
+        <ol>
+            <li><b>Access MySQL: </b>First, access the MySQL command-line interface as the root user:</li>
+            <div id="teminal_mode">
+              mysql -u root -p
+            </div>
+          
+            Enter the root password when prompted.<br><br>
+
+            <li><b>Create a new MySQL database:</b>Once you're logged in to MySQL, you can create a new database using the CREATE DATABASE command. Replace newdatabase with the desired name for the new database:</li>
+            <div id="teminal_mode">
+              CREATE DATABASE newdatabase;
+            </div>
+            
+            This command creates a new database with the specified name.<br><br>
+
+            <li><b>Verify database creation (optional): </b>You can verify that the database has been created by listing all databases:</li>
+            <div id="teminal_mode">
+              SHOW DATABASES;
+            </div>
+            
+            This command will display a list of all databases, including the newly created one.<br><br>
+
+            <li><b>Exit MySQL: </b>Once you've created the new database, you can exit the MySQL command-line interface:</li>
+            <div id="teminal_mode">
+              exit;
+            </div>
+            
+            That's it! You've successfully added a new database to MySQL. You can now use this database for storing data and creating tables as needed.<br><br>
+            
+        </ol>
+    </p>
+  </section>
+
+  <section id="configure-vhost">
+    <h2>How to configure a vhost in Apache</h2>
+    <p>
+        To configure a virtual host (vhost) in Apache on Ubuntu, you can follow these steps:
+        <ol>
+            <li><b>Create a new configuration file for your virtual host: </b>Apache on Ubuntu uses separate configuration files for each virtual host located in the /etc/apache2/sites-available/ directory. You can create a new configuration file for your virtual host using a text editor. Replace example.com with your domain name or desired hostname:</li>
+            sudo nano /etc/apache2/sites-available/example.com.conf<br><br>
+            <li><b>Configure the virtual host:</b>Inside the configuration file, you'll need to define the virtual host configuration. Here's a basic example:</li>
+            
+            <div id="teminal_mode">
+              &lt;VirtualHost *:80&gt;<br>
+                    &nbsp;  ServerAdmin  webmaster@example.com<br>
+                    &nbsp;  ServerName  example.com<br>
+                    &nbsp;  ServerAlias  www.example.com<br>
+                    &nbsp;  DocumentRoot  /var/www/example.com/public_html<br>
+                    &nbsp;  ErrorLog  ${APACHE_LOG_DIR}/example.com_error.log<br>
+                    &nbsp;  CustomLog  ${APACHE_LOG_DIR}/example.com_access.log combined<br>
+              &lt;/VirtualHost&gt;
+            </div>    
+            
+                <ul>
+                    <li>ServerAdmin: Email address of the server administrator.</li>
+                    <li>ServerName: The primary domain name for the virtual host.</li>
+                    <li>ServerAlias: Additional domain names (if any) that should be served by this virtual host.</li>
+                    <li>DocumentRoot: The directory where the website files for this virtual host are located.</li>
+                    <li>ErrorLog and CustomLog: Paths to log files for this virtual host.</li>
+                </ul>
+
+                Make sure to replace example.com with your actual domain name and adjust paths as necessary.   
+            <br><br>
+
+            <li><b>Enable the virtual host: </b>Once you've configured the virtual host, you need to enable it by creating a symbolic link from the sites-available directory to the sites-enabled directory:</li>
+            <div id="teminal_mode">
+              sudo ln -s /etc/apache2/sites-available/example.com.conf /etc/apache2/sites-enabled/
+            </div>
+            
+
+            <li><b>Restart Apache:</b>After enabling the virtual host, you need to restart Apache for the changes to take effect:</li>
+            <div id="teminal_mode">
+              sudo systemctl restart apache2
+            </div>
+            <li><b>Configure DNS (if necessary): </b>If your domain is not already pointing to your server's IP address, you'll need to update your DNS records to point to the server.</li>
+            
+        </ol>
+    </p>
+  </section>
+
+  <section id="test-lamp">
+    <h2>How to test that your LAMP stack is working</h2>
+    <p>
+        To test that your LAMP (Linux, Apache, MySQL, PHP) stack is working properly on Ubuntu, you can follow these steps:
+        <ol>
+            <li><b>Test Apache: </b>Open a web browser and enter http://localhost or http://your_server_ip in the address bar. You should see the default Apache web page if Apache is running correctly. If you've configured virtual hosts, you can also test them by entering the respective domain names in the browser.<br><br>
+
+            <li><b>Test PHP: </b>Create a PHP file in the web root directory (/var/www/html/) to test PHP. For example, create a file named info.php and add the following code:</li>
+            <div id="teminal_mode">
+              &lt;?php <br>
+              phpinfo();<br>
+              ?&gt;
+            </div>
+            
+            Save the file and then access it through the web browser by entering http://localhost/info.php or http://your_server_ip/info.php. You should see the PHP information page displaying details about your PHP installation if PHP is configured correctly.   
+            <br><br>
+
+            <li><b>Test MySQL:</b>You can test MySQL by logging in to the MySQL command-line interface and executing some commands. First, log in to MySQL:</li>
+            <div id="teminal_mode">
+              mysql -u root -p
+            </div>
+
+            Enter the root password when prompted. Once logged in, you can execute MySQL commands like creating a database, creating tables, inserting data, etc. For example, create a test database:<br>
+            <div id="teminal_mode">
+              SHOW DATABASES;
+            </div>
+
+            You should see the testdb database listed among the databases.<br><br>
+
+            <li><b>Verify errors and logs:</b>Additionally, you can check Apache's error log (/var/log/apache2/error.log) and MySQL's error log (/var/log/mysql/error.log) for any errors or warnings that may indicate issues with the LAMP stack.</li>
+            <br><br>
+
+            <li>By following these steps, you can thoroughly test your LAMP stack to ensure that all components are installed and functioning correctly.</li>
+            
+        </ol>
+    </p>
+  </section>
+
+</body>
+</html>
